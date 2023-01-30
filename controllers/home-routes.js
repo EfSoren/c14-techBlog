@@ -2,7 +2,15 @@ const router = require("express").Router();
 const { Comment, Post, User } = require("../models");
 const withAuth = require("../middleware/auth");
 
-router.get("/", async (req, res) => {
+router.get("/", (req, res) => {
+  try {
+    res.redirect("/home");
+  } catch (error) {
+    console.log(error);
+    res.status(500).json(error);
+  }
+});
+router.get("/home", async (req, res) => {
   try {
     const posts = await Post.findAll({
       include: [
@@ -30,7 +38,7 @@ router.get("/", async (req, res) => {
 });
 
 //add sequlize find user
-router.get("/dashboard", async (req, res) => {
+router.get("/dashboard", withAuth, async (req, res) => {
   if (req.session.UserID) {
     const userPosts = await Post.findAll({
       where: {
