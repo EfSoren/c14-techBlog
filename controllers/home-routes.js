@@ -48,7 +48,11 @@ router.get("/dashboard", withAuth, async (req, res) => {
     const postArray = userPosts.map((data) => data.get({ plain: true }));
     console.log(postArray);
     const userIdValue = req.session.UserID;
-    res.render("homepage", { postArray, userIdValue });
+    res.render("homepage", {
+      postArray,
+      userIdValue,
+      loggedIn: req.session.loggedIn,
+    });
   } else {
     res.redirect("/login");
   }
