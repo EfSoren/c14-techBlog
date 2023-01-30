@@ -1,0 +1,38 @@
+<div class="new-post-container">
+
+  <form class="add-text-form hidden" id="create-comment-form">
+    <input
+      type="text"
+      class="text-form-entry"
+      id="new-comment"
+      placeholder="Comment"
+    />
+
+    <button class="submit-btn" id="send-comment">Add Comment</button>
+  </form>
+
+</div>
+{{#each inOrder}}
+  <div class="post-box">
+    <div class="post-head">
+      <h1 class="header-text">{{this.title}} by {{this.user.username}}</h1>
+      <h1 class="header-text-hidden">{{this.user.id}}</h1>
+      <h1 class="header-text">{{this.createdAt}}</h1>
+      <button class="comment-btn">Comment on post #{{this.id}}</button>
+    </div>
+    <div class="post-text">{{this.post_text}}</div>
+  </div>
+  {{#each this.comments}}
+    <div class="post-box2">
+      <div class="post-head2">
+        <h1 class="header-text">{{this.user.username}} commented</h1>
+        <h1 class="header-text-hidden2">{{this.user.id}}</h1>
+        <h1 class="header-text">{{this.createdAt}}</h1>
+      </div>
+      <div class="post-text">{{this.comment_text}}</div>
+    </div>
+  {{/each}}
+{{/each}}
+<h1 class="hidden" id="user-id">{{userIdValue}}</h1>
+
+<script src="/js/dashboard.js"></script>

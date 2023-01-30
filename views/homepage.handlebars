@@ -1,0 +1,44 @@
+<div class="button-center">
+  <button class="submit-btn" id="add-post-btn">Add Post</button>
+</div>
+<div class="new-post-container">
+  <form class="add-text-form hidden" id="create-post-form">
+    <input
+      type="text"
+      class="text-form-entry"
+      id="new-title"
+      placeholder="Title"
+    />
+    <input
+      type="text"
+      class="text-form-entry"
+      id="new-post-text"
+      placeholder="Post Text"
+    />
+    <button class="submit-btn" id="send-post-btn">Add Post</button>
+  </form>
+  <form class="add-text-form hidden" id="edit-post-form">
+    <input
+      type="text"
+      class="text-form-entry"
+      id="updated-post-text"
+      placeholder="Updated Post Text"
+    />
+    <button class="submit-btn" id="edit-post-btn">Update Post</button>
+  </form>
+</div>
+{{#each postArray}}
+  <div class="post-box">
+    <div class="post-head">
+      <h1 class="header-text">{{this.title}} by {{this.user.username}}</h1>
+      <h1 class="header-text-hidden">{{this.creator_id}}</h1>
+      <h1 class="header-text">{{this.createdAt}}</h1>
+      <button class="comment-btn" id="comment-button">Edit Post #{{this.id}}</button>
+      <button class="delete-btn">Delete Post #{{this.id}}</button>
+    </div>
+    <div class="post-text">{{this.post_text}}</div>
+  </div>
+{{/each}}
+<h1 class="hidden" id="user-id">{{userIdValue}}</h1>
+
+<script src="/js/home.js"></script>
